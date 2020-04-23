@@ -1,5 +1,5 @@
 <template>
-  <div class="item d-flex">
+  <div class="item d-flex" @dragstart="moveItem()">
     <img :src="itemData.url" alt="img" />
   </div>
 </template>
@@ -13,7 +13,12 @@ export default {
     return {};
   },
   computed: {},
-  methods: {},
+  methods: {
+    moveItem() {
+      console.log("drag starting");
+      this.$emit("dragstart");
+    }
+  },
   components: {}
 };
 </script>

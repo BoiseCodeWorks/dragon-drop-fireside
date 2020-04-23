@@ -7,9 +7,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import Rooms from "../components/Room";
-
 export default {
   name: "Home",
   data() {
@@ -26,3 +24,15 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+.home {
+  background-color: teal;
+  margin: auto;
+}
+
+.rowTop {
+  display: flex;
+}
+</style>

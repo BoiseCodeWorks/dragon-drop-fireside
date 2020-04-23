@@ -26,10 +26,29 @@ export default new Vuex.Store({
       { id: 4, name: "Bathroom", items: [] },
       { id: 5, name: "Garbage", items: [] }
     ],
+    tempItem: {}
   },
   mutations: {
+    setItemToMove(state, itemData) {
+      state.tempItem = itemData
+    },
+    removeFromRoom(state, payload) {
+      let room = state.rooms.find(r => r.id == payload.oldRoomId)
+      room.items = room.items.filter(i => i.id != payload.itemToMove.id)
+    },
+    addToRoom(state, payload) {
+      let room = state.rooms.find(r => r.id == payload.newRoomId)
+      room.items.push(payload.itemToMove)
+    }
   },
   actions: {
+    setItemToMove({ commit, dispatch }, itemData) {
+      commit("setItemToMove", itemData)
+    },
+    moveItem({ commit, dispatch }, itemData) {
+      commit("removeFromRoom", itemData)
+      commit("addToRoom", itemData)
+    }
   },
   modules: {
   }
