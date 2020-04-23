@@ -1,18 +1,28 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="home container-fluid p-5">
+    <div class="row rowTop">
+      <rooms v-for="room in rooms" :roomData="room" :key="room._id" />
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Rooms from "../components/Room";
 
 export default {
-  name: 'Home',
+  name: "Home",
+  data() {
+    return {};
+  },
+  computed: {
+    rooms() {
+      return this.$store.state.rooms;
+    }
+  },
+  methods: {},
   components: {
-    HelloWorld
+    Rooms
   }
-}
+};
 </script>
