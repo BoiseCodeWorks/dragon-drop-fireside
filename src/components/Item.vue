@@ -8,15 +8,19 @@
 <script>
 export default {
   name: "item",
-  props: ["itemData"],
+  props: ["itemData", "roomId"],
   data() {
     return {};
   },
   computed: {},
   methods: {
     moveItem() {
-      console.log("drag starting");
-      this.$emit("dragstart");
+      // console.log("drag starting");
+      // this.$emit("dragstart");
+
+      //2nd way
+      event.dataTransfer.setData("data", JSON.stringify(this.itemData));
+      event.dataTransfer.setData("room", this.roomId);
     }
   },
   components: {}

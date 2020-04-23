@@ -7,6 +7,7 @@
         v-for="(item,index) in roomData.items"
         :itemData="item"
         :key="item.id"
+        :roomId="roomData.id"
         @dragstart="reorderItem(item, index)"
       />
     </div>
@@ -33,10 +34,18 @@ export default {
     moveItem(roomData) {
       console.log(roomData);
       console.log("dropping Item");
+      // let moveData = {
+      //   newRoomId: roomData.id,
+      //   oldRoomId: this.tempData.oldRoom.id,
+      //   itemToMove: this.tempData.item
+      // };
+      // this.$store.dispatch("moveItem", moveData);
+
+      let item = JSON.parse(event.dataTransfer.getData("data"));
       let moveData = {
         newRoomId: roomData.id,
-        oldRoomId: this.tempData.oldRoom.id,
-        itemToMove: this.tempData.item
+        oldRoomId: event.dataTransfer.getData("room"),
+        itemToMove: item
       };
       this.$store.dispatch("moveItem", moveData);
     }
